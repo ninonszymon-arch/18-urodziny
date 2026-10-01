@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>18 urodziny ❤️</title>
+  <meta name="theme-color" content="#ff4f8a" />
+  <style>
+    :root {
+      --card: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.12);
+      --text: #fff7fb;
+      --muted: #ead7e2;
+      --pink: #ff4f8a;
+      --pink2: #ff8db5;
+      --shadow: 0 14px 40px rgba(0,0,0,0.28);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,79,138,0.14), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(255,141,181,0.12), transparent 20%),
+        linear-gradient(180deg, #140b16 0%, #100b12 38%, #0c0a10 100%);
+      overflow-x: hidden;
+    }
+    .hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .heart { position: absolute; bottom: -20px; opacity: 0.22; animation: floatUp linear infinite; font-size: 20px; }
+    @keyframes floatUp {
+      from { transform: translateY(0) translateX(0) rotate(0); opacity: 0; }
+      12% { opacity: 0.22; }
+      85% { opacity: 0.18; }
+      to { transform: translateY(-115vh) translateX(35px) rotate(50deg); opacity: 0; }
+    }
+    .wrap { position: relative; z-index: 1; }
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(9,6,14,0.15), rgba(15,10,18,0.88)),
+        url('assets/hero.jpg') center/cover no-repeat;
+      text-align: center;
+    }
+    .hero-card {
+      width: min(100%, 720px);
+      padding: 28px 22px;
+      backdrop-filter: blur(10px);
+      background: rgba(11,8,14,0.44);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+    .kicker {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,79,138,0.16);
+      color: #ffd5e4;
+      border: 1px solid rgba(255,141,181,0.25);
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    h1 { margin: 0; line-height: 1.03; font-size: clamp(2.4rem, 8vw, 4.9rem); letter-spacing: -0.04em; }
+    .accent { color: #ff9fc4; }
+    .lead { margin: 18px auto 0; max-width: 560px; font-size: 1.05rem; color: var(--muted); line-height: 1.7; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+    .btn {
+      appearance: none; border: none; border-radius: 999px; text-decoration: none; cursor: pointer;
+      padding: 14px 18px; font-size: 1rem; font-weight: 700; transition: transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--pink), var(--pink2)); color: white; }
+    .btn-secondary { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.12); }
+    .section {
+      width: min(1100px, calc(100% - 26px));
+      margin: 28px auto;
+      padding: 26px 18px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .section-title { margin: 0 0 10px; font-size: clamp(1.7rem, 5vw, 2.4rem); letter-spacing: -0.03em; }
+    .section-intro { margin: 0 0 18px; color: var(--muted); line-height: 1.7; max-width: 760px; }
+    .birthday-note { display: grid; gap: 18px; }
+    .birthday-note p { margin: 0; line-height: 1.8; color: var(--muted); }
+    .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: stretch; }
+    .glass { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; overflow: hidden; }
+    .glass img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .glass-content { padding: 20px; }
+    .quote { font-size: 1.14rem; line-height: 1.9; color: #fff9fc; margin: 0; }
+    .mini { margin-top: 12px; color: var(--muted); line-height: 1.7; }
+    .moments { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .moment-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; }
+    .moment-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .moment-card .txt { padding: 14px; }
+    .moment-card h3 { margin: 0 0 8px; font-size: 1rem; }
+    .moment-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.96rem; }
+    .gallery { columns: 3 260px; column-gap: 14px; }
+    .gallery button {
+      width: 100%; border: none; padding: 0; margin: 0 0 14px; background: transparent; cursor: pointer;
+      break-inside: avoid; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+    }
+    .gallery img { width: 100%; display: block; border-radius: 20px; }
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .video-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 14px; }
+    .video-card video { width: 100%; border-radius: 14px; background: black; display:block; }
+    .video-card p { margin: 12px 2px 2px; color: var(--muted); line-height: 1.6; }
+    .closing { text-align: center; background: linear-gradient(135deg, rgba(255,79,138,0.18), rgba(255,255,255,0.05)); }
+    .closing p { max-width: 700px; margin: 10px auto 0; color: var(--muted); line-height: 1.9; }
+    .signature { font-size: 1.1rem; color: #ffd7e6; font-weight: 700; margin-top: 18px; }
+    .footer { text-align: center; color: rgba(255,255,255,0.65); padding: 14px 16px 40px; font-size: 0.94rem; }
+    .modal {
+      position: fixed; inset: 0; background: rgba(8,6,10,0.84); backdrop-filter: blur(10px);
+      display: none; place-items: center; padding: 18px; z-index: 10;
+    }
+    .modal.open { display: grid; }
+    .modal img { max-width: min(94vw, 1100px); max-height: 84vh; border-radius: 22px; box-shadow: var(--shadow); }
+    .modal button {
+      position: absolute; top: 16px; right: 16px; width: 44px; height: 44px;
+      border-radius: 999px; border: none; background: rgba(255,255,255,0.12); color: white; font-size: 1.6rem; cursor: pointer;
+    }
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .moments { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-card { padding: 24px 18px; }
+      .section { padding: 22px 14px; width: min(100% - 16px, 1100px); }
+      .moments { grid-template-columns: 1fr; }
+      .gallery { columns: 2 150px; column-gap: 10px; }
+      .gallery button { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-card">
+        <div class="kicker">18 urodziny ❤️</div>
+        <h1>Dla <span class="accent">Ciebie</span><br>na Twoją osiemnastkę</h1>
+        <p class="lead">Kilka naszych najlepszych momentów, wspomnień i uśmiechów zebranych w jednym miejscu. Żebyś zawsze mogła do nich wrócić — dziś, jutro i za kilka lat.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#start">Zobacz stronę</a>
+          <a class="btn btn-secondary" href="#gallery">Nasze zdjęcia</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="start">
+      <h2 class="section-title">Wszystkiego najlepszego 🎂</h2>
+      <div class="birthday-note">
+        <p>Dzisiaj jest Twój wyjątkowy dzień — Twoje <strong>18. urodziny</strong>. Chciałem zrobić dla Ciebie coś, co zostanie na dłużej niż zwykłe życzenia. Dlatego powstała ta strona: małe miejsce pełne naszych chwil, śmiesznych momentów, wspólnych wyjazdów, przytuleń i zdjęć, do których po prostu chce się wracać.</p>
+        <p>Niech ten rok przyniesie Ci mnóstwo szczęścia, spokoju, pięknych wspomnień i spełnionych marzeń. A ja chcę dalej być obok i tworzyć z Tobą kolejne momenty warte zapamiętania. ❤️</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="split">
+        <div class="glass"><img src="assets/childhood.jpg" alt="Zdjęcie z dzieciństwa" /></div>
+        <div class="glass glass-content">
+          <h2 class="section-title">Od małej dziewczynki do pięknej 18-latki ✨</h2>
+          <p class="quote">Dzisiaj wchodzisz w nowy etap życia — dalej ta sama wyjątkowa osoba, tylko z jeszcze większą ilością marzeń, uśmiechu i piękna.</p>
+          <p class="mini">Chciałem, żeby na tej stronie było miejsce nie tylko na nasze zdjęcia, ale też na tę drogę, którą już przeszłaś. Bo 18 urodziny to nie tylko liczba — to moment, który naprawdę warto zapamiętać.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Nasze najlepsze momenty</h2>
+      <p class="section-intro">Wybrałem kilka kadrów, które najlepiej pokazują nas — trochę romantycznie, trochę śmiesznie, trochę spontanicznie, ale zawsze razem.</p>
+      <div class="moments">
+        <article class="moment-card"><img src="assets/beach_pose.jpg" alt="Zachód słońca na plaży" /><div class="txt"><h3>Zachody słońca</h3><p>Momenty nad morzem, które mają swój klimat i zostają w pamięci na długo.</p></div></article>
+        <article class="moment-card"><img src="assets/night_hug.jpg" alt="Przytulenie wieczorem" /><div class="txt"><h3>Spokojne przytulenia</h3><p>Te chwile, kiedy nic więcej nie trzeba — wystarczy, że jesteśmy blisko.</p></div></article>
+        <article class="moment-card"><img src="assets/boat_selfie.jpg" alt="Selfie na łódce" /><div class="txt"><h3>Nasze wygłupy</h3><p>Śmieszne filtry, selfie i małe głupotki, z których robią się najlepsze wspomnienia.</p></div></article>
+        <article class="moment-card"><img src="assets/field_kiss.jpg" alt="Wspólne zdjęcie na łące" /><div class="txt"><h3>Chwile tylko nasze</h3><p>Najfajniejsze w tym wszystkim jest to, że każde miejsce staje się lepsze, kiedy jesteś obok.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <h2 class="section-title">Galeria wspomnień 📸</h2>
+      <p class="section-intro">Kliknij zdjęcie, żeby zobaczyć je większe.</p>
+      <div class="gallery">
+        <button type="button" data-full="assets/hero.jpg"><img src="assets/hero.jpg" alt="Zdjęcie z plaży" /></button>
+        <button type="button" data-full="assets/mirror_dress.jpg"><img src="assets/mirror_dress.jpg" alt="Portret" /></button>
+        <button type="button" data-full="assets/beach_pose.jpg"><img src="assets/beach_pose.jpg" alt="Plaża o zachodzie" /></button>
+        <button type="button" data-full="assets/beach_hold.jpg"><img src="assets/beach_hold.jpg" alt="Podniesienie na plaży" /></button>
+        <button type="button" data-full="assets/field_kiss.jpg"><img src="assets/field_kiss.jpg" alt="Zdjęcie na łące" /></button>
+        <button type="button" data-full="assets/night_hug.jpg"><img src="assets/night_hug.jpg" alt="Wieczorne przytulenie" /></button>
+        <button type="button" data-full="assets/low_angle.jpg"><img src="assets/low_angle.jpg" alt="Selfie" /></button>
+        <button type="button" data-full="assets/mirror_hug.jpg"><img src="assets/mirror_hug.jpg" alt="Lustro" /></button>
+        <button type="button" data-full="assets/beach_closeup.jpg"><img src="assets/beach_closeup.jpg" alt="Portret na plaży" /></button>
+        <button type="button" data-full="assets/train_selfie.jpg"><img src="assets/train_selfie.jpg" alt="Podróż" /></button>
+        <button type="button" data-full="assets/boat_selfie.jpg"><img src="assets/boat_selfie.jpg" alt="Selfie" /></button>
+        <button type="button" data-full="assets/car_selfie.jpg"><img src="assets/car_selfie.jpg" alt="Wspólne zdjęcie w aucie" /></button>
+        <button type="button" data-full="assets/car_sleep.jpg"><img src="assets/car_sleep.jpg" alt="Spanie w aucie" /></button>
+        <button type="button" data-full="assets/sleep_close.jpg"><img src="assets/sleep_close.jpg" alt="Bliskie zdjęcie" /></button>
+        <button type="button" data-full="assets/bunny_filter.jpg"><img src="assets/bunny_filter.jpg" alt="Zdjęcie z filtrem" /></button>
+        <button type="button" data-full="assets/childhood.jpg"><img src="assets/childhood.jpg" alt="Dzieciństwo" /></button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Małe filmowe wspomnienia 🎥</h2>
+      <p class="section-intro">Dodałem też filmiki, żeby strona była jeszcze bardziej żywa.</p>
+      <div class="video-grid">
+        <div class="video-card"><video controls preload="none" playsinline><source src="assets/video1.mp4" type="video/mp4" /></video><p>Jeden z dłuższych momentów, do którego można wracać jak do małego pamiętnika.</p></div>
+        <div class="video-card"><video controls preload="none" playsinline><source src="assets/video2.mp4" type="video/mp4" /></video><p>Krótki, ale fajny kadr — idealny jako szybkie wspomnienie na tej stronie.</p></div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <h2 class="section-title">I to dopiero początek ❤️</h2>
+      <p>Mam nadzieję, że ta strona wywoła uśmiech i będzie dla Ciebie miłą pamiątką na osiemnastkę. Najpiękniejsze jest to, że za jakiś czas będziemy mogli wrócić do tych zdjęć i zobaczyć, jak dużo wspólnych chwil już mamy — i jak dużo jeszcze przed nami.</p>
+      <div class="signature">Wszystkiego najlepszego 🫶</div>
+    </section>
+
+    <div class="footer">Ta strona została przygotowana jako prezent na 18. urodziny.</div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <button type="button" aria-label="Zamknij">×</button>
+    <img src="" alt="Podgląd zdjęcia" />
+  </div>
+
+  <script>
+    const hearts = document.getElementById('hearts');
+    const symbols = ['❤','❤','♡'];
+    for (let i = 0; i < 22; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.animationDuration = (10 + Math.random() * 13) + 's';
+      el.style.animationDelay = (-Math.random() * 18) + 's';
+      el.style.fontSize = (14 + Math.random() * 16) + 'px';
+      hearts.appendChild(el);
+    }
+    const modal = document.getElementById('modal');
+    const modalImg = modal.querySelector('img');
+    const closeBtn = modal.querySelector('button');
+    document.querySelectorAll('.gallery button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modalImg.src = btn.dataset.full;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>

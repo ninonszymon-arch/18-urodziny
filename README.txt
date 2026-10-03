@@ -1,27 +1,20 @@
-WERSJA GITHUB V2
-================
+STRONA NA 18 URODZINY + MINI GRA AUDI A3
 
-Ta wersja NIE ma folderu assets. Wszystkie zdjęcia i filmy są obok index.html.
-Dzięki temu najłatwiej wrzucić ją na GitHub Pages i nie zgubić zdjęć.
+Wrzucenie na GitHub Pages:
+1. Rozpakuj ZIP.
+2. W repozytorium GitHub wrzuć WSZYSTKIE pliki z tego folderu do głównego katalogu repo.
+3. index.html musi być bezpośrednio w głównym katalogu.
+4. Settings -> Pages -> Deploy from a branch -> main -> /(root).
+5. Poczekaj chwilę i otwórz link GitHub Pages.
 
-CO ZROBIĆ NA GITHUBIE:
-1. Wejdź do swojego repozytorium.
-2. Usuń stare pliki strony (szczególnie stary index.html i stary assets, jeśli jest).
-3. Rozpakuj ten ZIP na komputerze.
-4. Kliknij Add file -> Upload files.
-5. Zaznacz WSZYSTKIE pliki z rozpakowanego folderu i przeciągnij je na GitHub.
-6. Commit changes.
-7. Poczekaj 1-3 minuty i odśwież stronę GitHub Pages.
+Gra:
+- Na początku gry ustawiasz kolor Audi, felgi i dodatki.
+- Wybór auta zapisuje się w localStorage na telefonie/przeglądarce.
+- Rekord również zapisuje się lokalnie.
+- Sterowanie: przyciski lewo/prawo lub przesunięcie palcem po planszy.
+- 1 przeżyta sekunda = 1 punkt.
+- Gra przyspiesza i zwiększa częstotliwość przeszkód wraz z czasem.
 
-W repo na głównym poziomie muszą być m.in.:
-index.html
-foto_start.jpg
-dziecinstwo.jpg
-plaza_1.jpg
-noc.jpg
-laka.jpg
-lodka.jpg
-film_1.mp4
-film_2.mp4
-
-Jeżeli te pliki są widoczne w głównym widoku repo, zdjęcia i filmy powinny się ładować.
+QR:
+Kod QR powinien prowadzić do finalnego adresu GitHub Pages.
+Po zeskanowaniu strona i gra działają bez instalowania aplikacji.
